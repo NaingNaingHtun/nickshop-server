@@ -12,7 +12,7 @@ const emailsRoute = require("./Routes/emails");
 //load the system environment variables
 dotenv.config();
 //variables declarations
-const PORT = 5000 || process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const MONGODB_URL = process.env.MONGODB_URL;
 //connecting to the database
 mongoose.connect(MONGODB_URL).then(() => {
@@ -21,6 +21,9 @@ mongoose.connect(MONGODB_URL).then(() => {
 
 //middlware functions
 app.use(cors()); //CORS enabled
+app.get("/", (req, res) => {
+  res.status(200).json("Welcome to Nick Shop Ecommerce Server");
+});
 app.use(express.json()); //parsing the body
 app.use("/api/auth", authRoute); //auth route
 app.use("/api/users", userRoute); //user route
