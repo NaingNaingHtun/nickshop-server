@@ -1,0 +1,34 @@
+const express = require("express");
+const app = express();
+const dotenv = require("dotenv");
+const { default: mongoose } = require("mongoose");
+const cors = require("cors");
+const authRoute = require("./Routes/auth");
+const userRoute = require("./Routes/user");
+const productRoute = require("./Routes/product");
+const orderRoute = require("./Routes/order");
+const cartRoute = require("./Routes/cart");
+const emailsRoute = require("./Routes/emails");
+//load the system environment variables
+dotenv.config();
+//variables declarations
+const PORT = 5000 || process.env.PORT;
+const MONGODB_URL = process.env.MONGODB_URL;
+//connecting to the database
+mongoose.connect(MONGODB_URL).then(() => {
+  console.log("Connected to MongoDB Database");
+});
+
+//middlware functions
+app.use(cors()); //CORS enabled
+app.use(express.json()); //parsing the body
+app.use("/api/auth", authRoute); //auth route
+app.use("/api/users", userRoute); //user route
+app.use("/api/products", productRoute); //user route
+app.use("/api/orders", orderRoute); //user route
+app.use("/api/cart", cartRoute); //user route
+app.use("/api/emails", emailsRoute); //user route
+//server listen
+app.listen(5000, () => {
+  console.log(`Server is listening on port ${PORT}.`);
+});
