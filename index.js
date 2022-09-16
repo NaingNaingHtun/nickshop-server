@@ -12,7 +12,7 @@ const emailsRoute = require("./Routes/emails");
 //load the system environment variables
 dotenv.config();
 //variables declarations
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 // const MONGODB_URL = process.env.MONGODB_URL;
 const uri = process.env.MONGODB_URI;
 //connecting to the database
@@ -30,7 +30,7 @@ app.use("/api/orders", orderRoute); //user route
 app.use("/api/cart", cartRoute); //user route
 app.use("/api/emails", emailsRoute); //user route
 //server listen
-app.listen(5000, () => {
+app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}.`);
 });
 
