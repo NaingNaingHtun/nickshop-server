@@ -13,9 +13,10 @@ const emailsRoute = require("./Routes/emails");
 dotenv.config();
 //variables declarations
 const PORT = process.env.PORT || 3000;
-const MONGODB_URL = process.env.MONGODB_URL;
+// const MONGODB_URL = process.env.MONGODB_URL;
+const uri = process.env.MONGODB_URI;
 //connecting to the database
-mongoose.connect(MONGODB_URL).then(() => {
+mongoose.connect(uri).then(() => {
   console.log("Connected to MongoDB Database");
 });
 
