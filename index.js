@@ -21,9 +21,6 @@ mongoose.connect(MONGODB_URL).then(() => {
 
 //middlware functions
 app.use(cors()); //CORS enabled
-app.get("/", (req, res) => {
-  res.status(200).json("Welcome to Nick Shop Ecommerce Server");
-});
 app.use(express.json()); //parsing the body
 app.use("/api/auth", authRoute); //auth route
 app.use("/api/users", userRoute); //user route
@@ -34,4 +31,8 @@ app.use("/api/emails", emailsRoute); //user route
 //server listen
 app.listen(5000, () => {
   console.log(`Server is listening on port ${PORT}.`);
+});
+
+app.get("/", (req, res) => {
+  res.status(200).json("Welcome to Nick Shop Ecommerce Server");
 });
